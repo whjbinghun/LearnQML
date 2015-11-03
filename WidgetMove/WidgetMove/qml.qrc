@@ -3,5 +3,7 @@
         <file>main.qml</file>
         <file>RealPreview.qml</file>
         <file>GroupPreview.qml</file>
+        <file>IrSimpleFrame.qml</file>
+        <file>ViSimpleFrame.qml</file>
     </qresource>
 </RCC>

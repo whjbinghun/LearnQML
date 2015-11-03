@@ -9,6 +9,5 @@ unix:!android {
     }
     INSTALLS += target
 }
-
 export(INSTALLS)
 
