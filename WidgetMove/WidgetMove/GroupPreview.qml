@@ -2,14 +2,20 @@ import QtQuick 2.5
 
 Rectangle {
     id: group_preview
-    width: 364
-    height: 140
+    width: 374
+    height: 150
+    property int group_spacing_width: 5
+    property int group_spacing_height: 5
+    property int n_width: 364
+    property int n_height: 140
 
     border.color: "black"
     IrSimpleFrame {
         id: ir_preview
         anchors.left: parent.left
+        anchors.leftMargin: group_spacing_width
         anchors.top: parent.top
+        anchors.topMargin: group_spacing_height
         height: 117
         width: height*4/3;
 
@@ -35,7 +41,7 @@ Rectangle {
         anchors.top: ir_preview.bottom
         anchors.right: vi_preview.right
         anchors.bottom: parent.bottom
-        text: "88-云台-老残测器-1#";
+        //text: "88-云台-老残测器-1#";
         horizontalAlignment: Text.AlignHCenter;
         verticalAlignment: Text.AlignVCenter;
     }
