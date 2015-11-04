@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>IrPreview.qml</file>
+        <file>IrToolBar.qml</file>
+        <file>PtzBtn.qml</file>
+        <file>IrPalette.qml</file>
+        <file>BearBtn.qml</file>
+        <file>ViPreview.qml</file>
+        <file>ViToolBar.qml</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>images/delta_normal.png</file>
+        <file>images/palette.bmp</file>
+        <file>images/delta_hover.png</file>
+        <file>images/auto_login.png</file>
+        <file>images/line.png</file>
+        <file>images/point.png</file>
+        <file>images/rect.png</file>
+        <file>images/delta_pressed.png</file>
+    </qresource>
+</RCC>
