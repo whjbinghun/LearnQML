@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ItmBearBtn.qml</file>
+        <file>ItmGroupFrame.qml</file>
+        <file>ItmIrPalette.qml</file>
+        <file>ItmIrPreview.qml</file>
+        <file>ItmIrSimpleFrame.qml</file>
+        <file>ItmIrToolBar.qml</file>
+        <file>ItmPtzBtn.qml</file>
+        <file>ItmRealFrame.qml</file>
+        <file>ItmViPreview.qml</file>
+        <file>ItmViSimpleFrame.qml</file>
+        <file>ItmViToolBar.qml</file>
+        <file>ItmArea.qml</file>
+        <file>ItmChartTrend.qml</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>images/auto_login.png</file>
+        <file>images/delta_hover.png</file>
+        <file>images/delta_normal.png</file>
+        <file>images/delta_pressed.png</file>
+        <file>images/line.png</file>
+        <file>images/palette.bmp</file>
+        <file>images/point.png</file>
+        <file>images/rect.png</file>
+    </qresource>
+</RCC>
