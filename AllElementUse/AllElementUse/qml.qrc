@@ -27,6 +27,7 @@
         <file>FlickableElement.qml</file>
         <file>ScreenElement.qml</file>
         <file>TextFieldStyleElement.qml</file>
+        <file>CanvasElement.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/1x.png</file>

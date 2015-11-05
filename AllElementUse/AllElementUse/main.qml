@@ -7,8 +7,8 @@ Window {
     id: root
 
     visible: true
-    width: 360
-    height: 360
+    width: 800
+    height: 600
 
 
 
@@ -148,6 +148,13 @@ Window {
                 stateLabe1.text = "ERROR";
             }
         }
+    }
+
+    CanvasElement {
+        anchors.left: parent.left
+        anchors.leftMargin: parent.width/2
+        width: 320
+        height: 240
     }
 
     Component.onCompleted: {
