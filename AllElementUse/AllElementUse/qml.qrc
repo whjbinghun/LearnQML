@@ -16,8 +16,8 @@
         <file>CheckBoxElement.qml</file>
         <file>CheckBoxStyleElement.qml</file>
         <file>GroupBoxElement.qml</file>
-        <file>ComboBoxElement.qml</file>
-        <file>ComboBoxStyleElement.qml</file>
+        <file>ItmComboBox.qml</file>
+        <file>ItmComboBoxStyle.qml</file>
         <file>ProgressBarElement.qml</file>
         <file>ProgressBarStyleElement.qml</file>
         <file>TabViewElement.qml</file>

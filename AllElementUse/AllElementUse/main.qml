@@ -157,6 +157,13 @@ Window {
         height: 240
     }
 
+    ItmComboBox {
+        id: itmComboBox
+        anchors.left: parent.left
+        anchors.leftMargin: parent.width/2
+
+    }
+
     Component.onCompleted: {
         image_ele.source = "/images/images/caption_logo.bmp";
 
