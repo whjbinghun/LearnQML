@@ -55,7 +55,7 @@ Rectangle {
 
     TableView
     {
-        id: tableView
+        id: itmTableView
         anchors.fill: parent
         model: tableModel
 
@@ -115,11 +115,33 @@ Rectangle {
 
             function isCheckColumn( columnIndex )
             {
-                return tableView.getColumn( columnIndex ) === checkedColumn
+                return itmTableView.getColumn( columnIndex ) === checkedColumn
             }
         }
 
         focus: true;
     }
+
+    function get_ana_attrubite() {
+        var v_current_row = itmTableView.model.get( itmTableView.currentRow );
+        return v_current_row;
+    }
+
+    function add_ana_attrubite( ) {
+        itmTableView.model.append( { "checked":true, "ana_name": "77777", "ana_color":"black", "line_style": "77" } );
+    }
+
+    function modify_ana_attrubite() {
+        itmTableView.model.set( 0, { "checked":true, "ana_name": "333333", "ana_color":"black", "line_style": "66" } );
+    }
+
+    function del_ana_attrubite() {
+        itmTableView.model.remove( 0 );
+    }
+
+    function clear_ana_attrubite() {
+        itmTableView.model.clear();
+    }
+
 }
 
