@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.4
+import QtQuick.Layouts 1.1
 
 Rectangle {
     id: itmRctTable;
@@ -23,82 +24,98 @@ Rectangle {
         GradientStop { position: 1.0; color: "white"; }
     }
 
+    ListModel
+    {
+        id: tableModel
 
-    TableView {
-        id: phoneTable;
-        anchors.fill: parent;
+        ListElement
+        {
+            checked: false
+            ana_name: "blue"
+            ana_color: "blue";
+            line_style: "1";
+        }
 
-        TableViewColumn {
-            role: "name";
-            title: "Name";
-            width: 100;
-            elideMode: Text.ElideRight;
+        ListElement
+        {
+            checked: true
+            ana_name: "green"
+            ana_color: "green";
+            line_style: "2";
+        }
+
+        ListElement
+        {
+            checked: false
+            ana_name: "red"
+            ana_color: "red";
+            line_style: "3";
+        }
+    }
+
+    TableView
+    {
+        id: tableView
+        anchors.fill: parent
+        model: tableModel
+
+        TableViewColumn
+        {
+            id: checkedColumn
+
+            role: "checked"
+            title: qsTr( "Checked" )
+            width: 60;
             movable: false;
             horizontalAlignment: Text.AlignHCenter;
         }
-        TableViewColumn {
-            role: "cost";
-            title: "Cost";
-            width: 100;
-            movable: false;
-            horizontalAlignment: Text.AlignHCenter;
-        }
-        TableViewColumn {
-            role: "manufacturer";
-            title: "Manufacturer";
+
+        TableViewColumn
+        {
+            role: "ana_name";
+            title: qsTr( "分析名称" )
             width: 140;
             movable: false;
             horizontalAlignment: Text.AlignHCenter;
         }
 
-        itemDelegate: Text {
-            text: styleData.value;
-            color: styleData.selected ? "red" : styleData.textColor;
-            elide: styleData.elideMode;
+        TableViewColumn {
+            role: "ana_color";
+            title: "颜色";
+            width: 100;
+            movable: false;
+            horizontalAlignment: Text.AlignHCenter;
         }
 
-        rowDelegate: Rectangle {
-            color: styleData.selected ? itmRctTable.mv_heighlight_clr :
-                (styleData.alternate ? itmRctTable.mv_alter_background_clr
-                                     : itmRctTable.mv_background_clr );
+        TableViewColumn {
+            role: "line_style";
+            title: "线型";
+            width: 140;
+            movable: false;
+            horizontalAlignment: Text.AlignHCenter;
         }
 
-        headerDelegate: Rectangle {
-            implicitWidth: 10;
-            implicitHeight: 24;
-            gradient: styleData.pressed ? itmRctTable.pressG :
-                (styleData.containsMouse ? itmRctTable.hoverG
-                                     : itmRctTable.normalG );
-            border.width: 1;
-            border.color: "gray";
-            Text {
-                anchors.verticalCenter: parent.verticalCenter;
-                anchors.left: parent.left;
-                anchors.leftMargin: 4;
-                anchors.right: parent.right;
-                anchors.rightMargin: 4;
-                text: styleData.value;
-                color: styleData.pressed ? "red" : "blue";
-                font.bold: true;
+        itemDelegate: Item
+        {
+            CheckBox
+            {
+                anchors.centerIn: parent
+                checked: styleData.value
+                visible: isCheckColumn( styleData.column )
             }
-        }
 
-        model: ListModel {
-            id: phoneModel;
-            ListElement {
-                name: "iPhone 5";
-                cost: "4900";
-                manufacturer: "Apple";
+            Text
+            {
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                text: styleData.value
+                color: isCheckColumn( styleData.column )? "black": styleData.value
+                visible: !isCheckColumn( styleData.column )
             }
-            ListElement {
-                name: "B199";
-                cost: "1590";
-                manufacturer: "HuaWei";
-            }
-            ListElement {
-                name: "MI 2S";
-                cost: "1999";
-                manufacturer: "XiaoMi";
+
+            function isCheckColumn( columnIndex )
+            {
+                return tableView.getColumn( columnIndex ) === checkedColumn
             }
         }
 
