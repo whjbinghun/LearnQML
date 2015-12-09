@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ItmTableView.qml</file>
+    </qresource>
+</RCC>
