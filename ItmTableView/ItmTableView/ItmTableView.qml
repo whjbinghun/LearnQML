@@ -1,28 +1,11 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
+import QtQuick.Dialogs 1.2
 
 Rectangle {
     id: itmRctTable;
     anchors.fill: parent;
-
-    property var mv_background_clr: "#d7e3bc";
-    property var mv_alter_background_clr: "white";
-    property var mv_heighlight_clr: "#e4f7d6";
-    property var mv_header_background_clr: "#F0F0F0";
-    property var normalG: Gradient {
-        GradientStop { position: 0.0; color: "#c7d3ac"; }
-        GradientStop { position: 1.0; color: "#F0F0F0"; }
-    }
-    property var hoverG: Gradient {
-        GradientStop { position: 0.0; color: "white"; }
-        GradientStop { position: 1.0; color: "#d7e3bc"; }
-    }
-
-    property var pressG: Gradient {
-        GradientStop { position: 0.0; color: "#d7e3bc"; }
-        GradientStop { position: 1.0; color: "white"; }
-    }
 
     ListModel
     {
@@ -61,7 +44,7 @@ Rectangle {
 
         TableViewColumn
         {
-            id: checkedColumn
+            id: checkedColumn;
 
             role: "checked"
             title: qsTr( "Checked" )
@@ -72,6 +55,8 @@ Rectangle {
 
         TableViewColumn
         {
+            id: itmAnaName;
+
             role: "ana_name";
             title: qsTr( "分析名称" )
             width: 140;
@@ -80,6 +65,8 @@ Rectangle {
         }
 
         TableViewColumn {
+            id: itmAnaColor;
+
             role: "ana_color";
             title: "颜色";
             width: 100;
@@ -88,6 +75,8 @@ Rectangle {
         }
 
         TableViewColumn {
+            id: itmLineStyle;
+
             role: "line_style";
             title: "线型";
             width: 140;
@@ -97,29 +86,62 @@ Rectangle {
 
         itemDelegate: Item
         {
+            id: itmDelegate;
+
             CheckBox
             {
                 anchors.centerIn: parent
                 checked: styleData.value
-                visible: isCheckColumn( styleData.column )
+                visible: itmDelegate.isCheckColumn( styleData.column )
             }
 
             Text
             {
+                id: itmTxtName;
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
                 text: styleData.value
-                color: isCheckColumn( styleData.column )? "black": styleData.value
-                visible: !isCheckColumn( styleData.column )
+                color: itmDelegate.isCheckColumn( styleData.column )? "black": styleData.value
+                visible: itmDelegate.is_ana_name( styleData.column )
+            }
+
+
+            Rectangle {
+                id: itmRctAnaColor;
+
+                anchors.centerIn: parent
+                width: 70;
+                height: 15;
+                color: itmDelegate.is_ana_color_column( styleData.column )?styleData.value:"black";
+                visible: itmDelegate.is_ana_color_column( styleData.column );
             }
 
             function isCheckColumn( columnIndex )
             {
-                return itmTableView.getColumn( columnIndex ) === checkedColumn
+                return itmTableView.getColumn( columnIndex ) === checkedColumn;
+            }
+
+            function is_ana_name( columnIndex ) {
+                return itmTableView.getColumn( columnIndex ) === itmAnaName;
+            }
+
+            function is_ana_color_column( columnIndex ) {
+                var v_show = (itmTableView.getColumn( columnIndex ) === itmAnaColor);
+                return v_show;
             }
         }
 
         focus: true;
+
+        onDoubleClicked: {
+            itmDlgColor.visible = true;
+        }
+    }
+
+    ColorDialog {
+        id: itmDlgColor;
+        visible: false;
+
     }
 
     function get_ana_attrubite() {
