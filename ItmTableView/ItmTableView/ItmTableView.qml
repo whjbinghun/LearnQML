@@ -2,10 +2,12 @@ import QtQuick 2.0
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
+import QtQuick.Controls.Styles 1.4
 
 Rectangle {
     id: itmRctTable;
     anchors.fill: parent;
+
 
     ListModel
     {
@@ -69,7 +71,7 @@ Rectangle {
 
             role: "ana_color";
             title: "颜色";
-            width: 100;
+            width: 75;
             movable: false;
             horizontalAlignment: Text.AlignHCenter;
         }
@@ -105,13 +107,12 @@ Rectangle {
                 visible: itmDelegate.is_ana_name( styleData.column )
             }
 
-
             Rectangle {
                 id: itmRctAnaColor;
 
                 anchors.centerIn: parent
                 width: 70;
-                height: 15;
+                height: 12;
                 color: itmDelegate.is_ana_color_column( styleData.column )?styleData.value:"black";
                 visible: itmDelegate.is_ana_color_column( styleData.column );
             }
@@ -134,14 +135,22 @@ Rectangle {
         focus: true;
 
         onDoubleClicked: {
+            var v_row = tableModel.get( row );
+            itmDlgColor.setColor( v_row.ana_color );
             itmDlgColor.visible = true;
+
         }
     }
 
     ColorDialog {
         id: itmDlgColor;
         visible: false;
+        title: "分析颜色";
 
+        onSelectionAccepted: {
+            itmTableView.model.setProperty( itmTableView.currentRow
+                                           , "ana_color", itmDlgColor.currentColor.toString() );
+        }
     }
 
     function get_ana_attrubite() {
@@ -164,6 +173,5 @@ Rectangle {
     function clear_ana_attrubite() {
         itmTableView.model.clear();
     }
-
 }
 
