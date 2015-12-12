@@ -93,6 +93,7 @@ Rectangle {
             CheckBox
             {
                 anchors.centerIn: parent
+                anchors.verticalCenter: parent.verticalCenter
                 checked: styleData.value
                 visible: itmDelegate.isCheckColumn( styleData.column )
             }
