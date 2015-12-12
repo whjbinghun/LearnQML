@@ -18,6 +18,9 @@ Window {
 
         visible: false;
         title: "11111";
+//        TabView {
+
+//        }
     }
 
 //    Text {
