@@ -8,45 +8,25 @@
 #include <QTimerEvent>
 #include <QQmlListProperty>
 #include "presetinfo.h"
-
-
-//class Preset : public QObject
-//{
-//    Q_OBJECT
-//    Q_PROPERTY(int n_preset_rail READ get_preset_rail )
-//    Q_PROPERTY(int n_preset_ptz READ get_preset_ptz )
-//    Q_PROPERTY(QString itemname READ itemname1 NOTIFY nameChanged )
-//public:
-//    explicit Preset(QObject *parent = 0):
-//        mn_preset_rail(0)
-//      , mn_preset_ptz(0)
-//      , m_str_preset_name(""){}
-//    ~Preset(){}
-//    int get_preset_rail(){ return mn_preset_rail; }
-//    int get_preset_ptz(){ return mn_preset_ptz; }
-//    QString itemname1(){ return m_str_preset_name; }
-//public:
-//    int mn_preset_rail;
-//    int mn_preset_ptz;
-//    QString m_str_preset_name;
-//signals:
-//    void nameChanged();
-//};
+#include <QQmlPropertyMap>
 
 class ColorMaker : public QObject
 {
     Q_OBJECT
     Q_ENUMS(GenerateAlgorithm)
-    Q_PROPERTY(QQmlListProperty<PresetInfo> preset_items READ preset_items )
+    Q_PROPERTY(QQmlListProperty<PresetInfo> preset_items READ get_preset_items )
 public:
     explicit ColorMaker(QObject *parent = 0);
     ~ColorMaker();
 
-    QQmlListProperty<PresetInfo> preset_items();
+    void init_preset_info();
+
+    QQmlListProperty<PresetInfo> get_preset_items();
+    QMap< int, PresetInfo*> get_map_preset();
 public:
   //  QList<QObject*> m_preset_info_list;
     QList<PresetInfo*> item_list;
-
+    QMap< int, PresetInfo*> m_map_preset_info;
 };
 
 #endif // COLORMAKER_H
