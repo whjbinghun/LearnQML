@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ItmButtonStyle.qml</file>
+        <file>btn_ir_point_disable.png</file>
+        <file>btn_ir_point_normal.png</file>
+        <file>btn_ir_point_press.png</file>
+        <file>ItmBtn.qml</file>
+        <file>ItmBtnStyleBackground.qml</file>
+    </qresource>
+</RCC>
