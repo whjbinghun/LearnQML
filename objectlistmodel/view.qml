@@ -38,18 +38,76 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.5
+import QtQuick.Window 2.0
+import QtQuick.Controls 1.4
 
-//![0]
-ListView {
-    width: 100; height: 100
+Window {
+    visible: true;
+    width: 200;
+    height: 200;
 
-    model: myModel
-    delegate: Rectangle {
-        height: 25
-        width: 100
-        color: model.modelData.color
-        Text { text: name }
+//    ListView {
+//        width: 100; height: 100
+
+//        model: myModel
+//        delegate: Rectangle {
+//            height: 25
+//            width: 100
+//            color: model.modelData.color
+//            Text { text: name }
+//        }
+//    }
+    TableView {
+        id: stockTable;
+        anchors.fill: parent
+        model: myModel;
+
+        TableViewColumn {
+            role: "str_name";
+            title: "项目名";
+            width: 60;
+            movable: false;
+            horizontalAlignment: Text.AlignHCenter;
+        }
+
+        TableViewColumn {
+            role: "itm_color";
+            title: "颜色";
+            width: 60;
+            movable: false;
+            horizontalAlignment: Text.AlignHCenter;
+        }
+
+        itemDelegate: Text {
+            text: styleData.value;
+            verticalAlignment: Text.AlignVCenter;
+            horizontalAlignment: Text.AlignRight;
+            font.pointSize: 13;
+            elide: styleData.elideMode;
+            onTextChanged: {
+                switch(styleData.column){
+                case 1:
+                    color = stockTable.colorOf(styleData.row);
+                    break;
+                }
+            }
+        }
+
+        function colorOf(row){
+            switch(model.stateOf(row)){
+            case 0:
+                return "black";
+            case 1:
+                return "red";
+            case -1:
+                return "green";
+            }
+        }
+
     }
 }
-//![0]
+
+
+
+

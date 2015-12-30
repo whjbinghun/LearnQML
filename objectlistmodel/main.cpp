@@ -45,6 +45,7 @@
 #include <qqml.h>
 #include <QtQuick/qquickitem.h>
 #include <QtQuick/qquickview.h>
+#include <QQmlApplicationEngine>
 
 #include "dataobject.h"
 
@@ -53,10 +54,25 @@
    model in QML
 */
 
-//![0]
 int main(int argc, char ** argv)
 {
     QGuiApplication app(argc, argv);
+
+//    QList<QObject*> dataList;
+//    dataList.append(new DataObject("Item 1", "red"));
+//    dataList.append(new DataObject("Item 2", "green"));
+//    dataList.append(new DataObject("Item 3", "blue"));
+//    dataList.append(new DataObject("Item 4", "yellow"));
+
+//    QQuickView view;
+//    view.setResizeMode(QQuickView::SizeRootObjectToView);
+//    QQmlContext *ctxt = view.rootContext();
+//    ctxt->setContextProperty("myModel", QVariant::fromValue(dataList));
+
+//    view.setSource(QUrl("qrc:view.qml"));
+//    view.show();
+
+    QQmlApplicationEngine engine;
 
     QList<QObject*> dataList;
     dataList.append(new DataObject("Item 1", "red"));
@@ -64,14 +80,10 @@ int main(int argc, char ** argv)
     dataList.append(new DataObject("Item 3", "blue"));
     dataList.append(new DataObject("Item 4", "yellow"));
 
-    QQuickView view;
-    view.setResizeMode(QQuickView::SizeRootObjectToView);
-    QQmlContext *ctxt = view.rootContext();
+    QQmlContext *ctxt = engine.rootContext();
     ctxt->setContextProperty("myModel", QVariant::fromValue(dataList));
-//![0]
 
-    view.setSource(QUrl("qrc:view.qml"));
-    view.show();
+    engine.load(QUrl("qrc:view.qml") );//QUrl(QStringLiteral("qrc:/view.qml")));
 
     return app.exec();
 }
