@@ -90,12 +90,21 @@ Rectangle {
         {
             id: itmDelegate;
 
+            Component.onDestruction: {
+
+                console.log( "comTableView onDestroyed", styleData.row, styleData.column );
+            }
+
             CheckBox
             {
                 anchors.centerIn: parent
                 anchors.verticalCenter: parent.verticalCenter
                 checked: styleData.value
                 visible: itmDelegate.isCheckColumn( styleData.column )
+
+                Component.onDestruction: {
+                    console.log( "CheckBox onDestroyed", styleData.row, styleData.column );
+                }
             }
 
             Text
