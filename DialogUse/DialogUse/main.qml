@@ -2,26 +2,38 @@ import QtQuick 2.5
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
+import MsDialog 1.0
 
 Window {
-    visible: true
+    visible: true;
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-          itmDialog.visible = true;
-        }
+    ItmTableView {
+
     }
 
-    Dialog {
-        id: itmDialog;
+//    MouseArea {
+//        anchors.fill: parent
+//        onClicked: {
+//          itmDialog.visible = true;
+//        }
+//    }
 
-        visible: false;
-        title: "11111";
+//    MsDialog {
+//        id: itmDialog;
+//        visible: false;
+
+//        Item {
+
+//        }
+//    }
+
+//        visible: false;
+//        title: "11111";
 //        TabView {
 
 //        }
-    }
+
+
 
 //    Text {
 //        text: qsTr("Hello World")

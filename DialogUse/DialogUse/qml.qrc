@@ -1,6 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>ItmTableView.qml</file>
+        <file>tabview_style.png</file>
+        <file>call1.png</file>
+        <file>call2.png</file>
+        <file>call3.png</file>
     </qresource>
 </RCC>
-
